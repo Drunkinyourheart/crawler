@@ -1,0 +1,20 @@
+
+Copyright @ yeepay
+
+@author Jerry
+--------------------------------------------------------------------------------------------------------------
+1.  BootStrap boot = new BootStrap();
+
+2.  编写若干 Handler ，负责处理所有的处理逻辑
+
+3.  实现 PipelineFactory 接口/类, addLast() 方法中加入所有新的 Handler
+
+4.  bootStrap.set(new NioSocket(pool1, pool2);
+
+5.  bootStrap.setPipeline( step 3. )
+
+
+                                  Channel
+                ---------------------------------------------------------->
+Client ->           ChannelPipeline (Handler1, Handler2, Handler3, ...)        ---> Others
+                <----------------------------------------------------------

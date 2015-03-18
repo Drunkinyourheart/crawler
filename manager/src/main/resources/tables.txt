@@ -1,0 +1,54 @@
+数据入库：
+1.news_content
+create table news_content(
+id varchar(64) not null primary key,
+content mediumtext,
+createTime datetime
+);
+
+
+2.news_index
+create table news_index(
+id varchar(64) not null primary key,
+url varchar(255) not null,
+docid varchar(128),
+startTime datetime,
+crawleTime datetime,
+extractTime datetime,
+createTime datetime
+);
+
+
+3.list_seed_info
+create table list_seed_info(
+id	int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+url varchar(255) NOT NULL UNIQUE KEY,
+xpath text,
+type varchar(64) NOT NULL COMMENT 'list seed 类型：LIST，RSSLIST',
+status varchar(32) NOT NULL COMMENT 'list seed 状态',
+loadMode varchar(32) DEFAULT NULL COMMENT '是否时动态页面:static, dynamic',
+updateRate	int(11) NOT NULL  COMMENT 'update period : unit is second ',
+pageId	int(11) DEFAULT NULL,
+createTime datetime NOT NULL,
+modifyTime datetime NOT NULL,
+updateTime datetime,
+INDEX status_index status
+);
+
+日志跟踪信息
+create table list_seed_log(
+id	int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+url varchar(255) NOT NULL,
+tsstamp bigint(15) NOT NULL,
+runningStatus varchar(64) NOT NULL,
+scheduleTime datetime,
+crawleAcceptTime datetime,
+crawleScheduleTime datetime,
+startTime datetime,
+endTime datetime,
+detail_total_count int(11),
+succeed_count int(11),
+fail_count int(11),
+traceInfo text,
+INDEX url_ts url,tsstamp
+);

@@ -1,0 +1,13 @@
+#!/bin/awk -f 
+BEGIN{
+	OFS=" : ";
+}
+{
+	split($7,fromUrlArray," : ");
+	split($9,totalTimeArray," : ");
+        split($10,beforeInDbArray," : ");
+        split($11,crawlerTimeArray," : ");
+        print fromUrlArray[2],crawlerTimeArray[2],beforeInDbArray[2],totalTimeArray[2];
+}
+END{
+}
